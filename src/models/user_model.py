@@ -1,11 +1,12 @@
 from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import declarative_base
 
-from src.databases.mysql import Base
+Base = declarative_base()
 
 
 class UserModel(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True)
-    name = Column(String)
-    age = Column(Integer)
+    name = Column(String(255), nullable=False)
+    age = Column(Integer, nullable=False)
