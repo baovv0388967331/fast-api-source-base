@@ -1,23 +1,12 @@
-import os
-
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, async_sessionmaker, create_async_engine
 
 from src.models.user_model import Base
 
-# from typing import AsyncGenerator
 
-
-class MysqlDatabase:
-    _database_url = "mysql+aiomysql://%s:%s@%s:%s/%s?charset=utf8" % (
-        os.environ.get("MYSQL_USER", "fastapi_user"),
-        os.environ.get("MYSQL_PASSWORD", "root"),
-        os.environ.get("MYSQL_HOST", "127.0.0.1"),
-        os.environ.get("MYSQL_PORT", "3306"),
-        os.environ.get("MYSQL_DATABASE", "fastapi_db"),
-    )
-
+class MysqlContainer:
+    _database_url = "sqlite+aiosqlite:///:memory:"
     _engine: AsyncEngine | None = None
     _session_maker: async_sessionmaker[AsyncSession] | None = None
 
@@ -30,14 +19,6 @@ class MysqlDatabase:
     async def close_database(self):
         await self.get_engine().dispose()
 
-    async def check_connect_database(self):
-        try:
-            async with self.get_engine().begin() as conn:
-                await conn.execute(text("SELECT 1"))
-            print("✅ Connecting test database success!")
-        except SQLAlchemyError as e:
-            print(f"❌ Connecting test database failed!: {e}")
-
     async def setup_models(self):
         async with self.get_engine().begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
@@ -45,6 +26,14 @@ class MysqlDatabase:
     async def teardown_models(self):
         async with self.get_engine().begin() as conn:
             await conn.run_sync(Base.metadata.drop_all)
+
+    async def check_connect_database(self):
+        try:
+            async with self.get_engine().begin() as conn:
+                await conn.execute(text("SELECT 1"))
+            print("✅ Connecting test database success!")
+        except SQLAlchemyError as e:
+            print(f"❌ Connecting test database failed!: {e}")
 
     def get_engine(self) -> AsyncEngine:
         if self._engine is None:
@@ -55,6 +44,3 @@ class MysqlDatabase:
         if self._session_maker is None:
             raise Exception("❌ Database engine is not initialized")
         return self._session_maker()
-
-
-mysql_database = MysqlDatabase()
