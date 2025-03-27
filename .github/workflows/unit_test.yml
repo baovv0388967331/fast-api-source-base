@@ -30,4 +30,4 @@ jobs:
         run: poetry install
 
       - name: 🚀 Run tests
-        run: poetry run pytest --cov=src --cov-report=term-missing
+        run: pytest --cov=src --cov-branch --cov-report=term-missing
