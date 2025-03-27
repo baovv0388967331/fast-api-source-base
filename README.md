@@ -12,5 +12,8 @@
     - Check command: `black --check .`
 
 ## Unittest
+- Run test
+    - Check command: `poetry run pytest ./`
+- Coverage test
+    - Check command: `pytest --cov=src --cov-report=term-missing`
 
-- Check command: `poetry run pytest ./`

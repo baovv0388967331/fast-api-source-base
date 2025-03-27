@@ -28,6 +28,7 @@ testcontainers = "^4.9.2"
 cryptography = "^44.0.2"
 aiosqlite = "^0.21.0"
 pylint = "^3.3.6"
+pytest-cov = "^6.0.0"
 
 [build-system]
 requires = ["poetry-core"]

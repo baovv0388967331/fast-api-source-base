@@ -1,0 +1,36 @@
+{
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "always",
+        },
+    },
+    "isort.args":["--profile", "black"],
+    "cSpell.words": [
+        "aiomysql",
+        "aiosqlite",
+        "ASGI",
+        "asyncio",
+        "autoflush",
+        "autouse",
+        "fastapi",
+        "htmlcov",
+        "httpx",
+        "isort",
+        "norecursedirs",
+        "pycache",
+        "pylint",
+        "pyproject",
+        "pytest",
+        "scopefunc",
+        "sessionmaker",
+        "sqlalchemy",
+        "testcontainers",
+        "testpaths",
+        "usefixtures",
+        "uvicorn",
+        "venv",
+        "virtualenvs"
+    ]
+}
