@@ -27,6 +27,7 @@ httpx = "^0.28.1"
 testcontainers = "^4.9.2"
 cryptography = "^44.0.2"
 aiosqlite = "^0.21.0"
+pylint = "^3.3.6"
 
 [build-system]
 requires = ["poetry-core"]

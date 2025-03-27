@@ -10,7 +10,7 @@ class MysqlContainer:
     _engine: AsyncEngine | None = None
     _session_maker: async_sessionmaker[AsyncSession] | None = None
 
-    async def open_database(self):
+    def __init__(self):
         self._engine = create_async_engine(self._database_url)
         self._session_maker = async_sessionmaker(
             bind=self._engine, class_=AsyncSession, expire_on_commit=False, autocommit=False, autoflush=False

@@ -1,0 +1,43 @@
+name: ✅ Code Quality Check
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - staging
+  push:
+    branches: 
+      - develop
+      - staging
+
+jobs:
+  linting:
+    name: Run Code Quality Tools
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: 📥 Install Poetry
+        run: pip install poetry
+
+      - name: 📥 Install dependencies
+        run: poetry install
+
+      - name: 🎨 Run Black (code formatter)
+        run: poetry run black --check .
+
+      - name: 📏 Run isort (import sorting)
+        run: poetry run isort --check-only .
+
+      - name: 🔍 Run Flake8 (code style)
+        run: poetry run flake8 .
+
+      - name: 🛠️ Run Pylint (code analysis)
+        run: poetry run pylint ./src 

@@ -1,0 +1,26 @@
+[MASTER]
+max-module-lines=1000
+
+good-names=i,j,k,ex,_,db,fp,obj
+
+[MESSAGES CONTROL]
+disable=
+    missing-module-docstring,
+    missing-class-docstring,
+    missing-function-docstring,
+    too-many-arguments,
+    too-many-instance-attributes,
+    too-few-public-methods,
+    redefined-outer-name
+
+[BASIC]
+max-line-length=120
+
+[FORMAT]
+indent-string='    '
+
+[DESIGN]
+max-attributes=10
+
+[TYPECHECK]
+ignored-modules=pytest,pytest_asyncio
