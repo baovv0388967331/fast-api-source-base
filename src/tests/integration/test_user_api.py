@@ -2,7 +2,7 @@ import pytest_asyncio
 
 from src.models.user_model import UserModel
 from src.tests.containers.mysql_container import MysqlContainer
-from src.tests.core.async_base import AsyncBase
+from src.tests.core.helper import AsyncBase
 
 
 @pytest_asyncio.fixture(scope="function")

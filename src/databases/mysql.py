@@ -6,8 +6,6 @@ from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, async_sessionmaker
 
 from src.models.user_model import Base
 
-# from typing import AsyncGenerator
-
 
 class MysqlDatabase:
     _database_url = "mysql+aiomysql://%s:%s@%s:%s/%s?charset=utf8" % (

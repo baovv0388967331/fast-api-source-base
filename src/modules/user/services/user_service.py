@@ -38,15 +38,3 @@ class UserService:
         user = await self.user_repository.delete(user)
 
         return user
-
-    async def transaction(self, user: UserRequest):
-        async for session in self.user_repository.get_session():
-            try:
-                new_user = UserModel(**user.__dict__)
-                session.add(new_user)
-                await session.commit()
-            except Exception as e:
-                print(f"Error: {e}, transaction rolled back")
-                await session.rollback()
-            finally:
-                await session.close()

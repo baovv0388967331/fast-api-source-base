@@ -15,5 +15,4 @@
 - Run test
     - Check command: `poetry run pytest ./`
 - Coverage test
-    - Check command: `pytest --cov=src --cov-report=term-missing`
-
+    - Check command: `pytest --cov=src --cov-branch --cov-report=term-missing -s -v`
